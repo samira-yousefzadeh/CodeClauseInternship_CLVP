@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CLV Predictor</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f4f7f8;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            width: 400px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        label, input {
+            display: block;
+            margin-top: 10px;
+            width: 100%;
+        }
+        input[type="text"] {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            background-color: #e7f7e7;
+            padding: 10px;
+            border-left: 4px solid #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Customer Lifetime Value Predictor</h2>
+        <form action="/predict" method="post">
+            <label for="aov">Average Order Value</label>
+            <input type="text" name="aov" required>
+
+            <label for="frequency">Purchase Frequency</label>
+            <input type="text" name="frequency" required>
+
+            <label for="lifespan">Customer Lifespan (months)</label>
+            <input type="text" name="lifespan" required>
+
+            <input type="submit" value="Predict CLV">
+        </form>
+
+        {% if prediction_text %}
+            <div class="result">
+                <p><strong>{{ prediction_text }}</strong></p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
